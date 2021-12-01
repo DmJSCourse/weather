@@ -1,0 +1,15 @@
+$cold: #00ffff;
+$normal: #fff700;
+$hot: #ff8c00;
+
+
+.display {
+    background-color: $normal;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    width: 80vw;
+    height: 80vh;
+}
