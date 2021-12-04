@@ -1,9 +1,19 @@
 import './Footer.css';
 
-function Footer() {
+function Footer({ temperature, changeTemperature }) {
     return (
         <footer className="footer">
-            Footer
+            <label for="temperatureBar">Adjust temperature</label>
+            <input 
+                type='range'
+                className='temperatureBar'
+                name='temperatureBar'
+                min='0'
+                max='40'
+                value= {temperature}
+                step='1'
+            >
+            </input>
         </footer>
   );
 }
