@@ -1,15 +1,11 @@
-$cold: #00ffff;
-$normal: #fff700;
-$hot: #ff8c00;
-
-
 .display {
-    background-color: $normal;
+    background-color: #000000;
     display: flex;
     justify-content: center;
+    height: 90vh;
 }
 
 .icon {
-    width: 80vw;
-    height: 80vh;
+    width: 75%;
+    height: 75%;
 }

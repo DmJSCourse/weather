@@ -1,77 +1,42 @@
-// const getWeather = (city, lattitude, longitude) => {
-//     const URL = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/';
-//     let query = '';
-
-//     if(city) {
-//         query = 'search/?query=' + city;
-//     } else {
-//         query = 'search/?lattlong=' + lattitude + ',' + longitude;
-//     }
-
-//     fetch(URL + query)
-//         .then((response) => {
-//             return response.json();
-//         })
-//         .then((data) => {
-//            console.log(data[0].title);
-//            fetch(URL + data[0].woeid + '/') 
-//             .then((response) => {return response.json(); })
-//             .then((data) => {weather = data})
-//         });
-
-//     return weather;
-// }
+async function getWeather(city) {
+    // const URL = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/';
+    const URL = 'https://www.metaweather.com/api/location/';
 
 
-// async function getWeather(city, lattitude, longitude) {
-//     const URL = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/';
 
-//     if (!city) {
-//         let nearbyCities = await 
-//             fetch(URL + 'search/?lattlong=' + lattitude + ',' + longitude)
-//             .then((response) => response.json());
-//         city = await nearbyCities[0].title;
-//     }
-
-//     console.log('city', city);
-
-//     let woeid = await 
-//         fetch(URL + 'search/?query=' + city)
-//         .then((response) => response.json())
-//         .then((cityData) => { return cityData.woeid });
-
-//     console.log ('woeid', woeid);
-    
-//     let weatherData = await 
-//         fetch(URL + woeid + '/')
-//         .then((response) => response.json());
-
-//     console.log('return', weatherData);
-//     return weatherData;
-//   }
-
-// export default getWeather;
-
-async function getWeather(city, lattitude, longitude) {
-    const URL = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/';
 
     if (!city) {
-        let nearbyCities = await 
-            fetch(URL + 'search/?lattlong=' + lattitude + ',' + longitude)
+        let coords = await new Promise(() => {
+            navigator.geolocation.getCurrentPosition(success, error);
+
+            function success(position) {
+                return [position.coords.latitude, position.coords.longitude]
+            }
+            function error(err) {
+                alert(`ERROR(${err.code}): ${err.message}`);
+            }
+        }).then((result)=> {
+            console.log('res', result)
+        })
+
+        let result1 = coords;
+            
+        let nearbyCities = await fetch(URL + 'search/?lattlong=' + result1[0] + ',' + result1[1])
             .then((response) => response.json());
         city = await nearbyCities[0].title;
-        console.log('city', city);
+        console.log(city)
     }
 
-await fetch(URL + 'search/?query=' + city)
-        .then((response) => response.json())
-        .then((cityData) => { 
-            fetch(URL + cityData[0].woeid + '/')
-                .then((response) => response.json())
-                .then((geoData) => {
-                    console.log(geoData.consolidated_weather[0])
-                    return geoData.consolidated_weather[0]});
-         });
-  }
+let cityData = await fetch(URL + 'search/?query=' + city);
+// console.log('cityData', cityData);
+let parsedData = await cityData.json();
+// console.log('parsed', parsedData[0].woeid);
+let weather = await (await fetch(URL + parsedData[0].woeid + '/')).json();
+// console.log('weather', weather);
+let toPass = await weather.consolidated_weather[0];
+// console.log('topass', toPass)
+
+return toPass;
+}
 
 export default getWeather;

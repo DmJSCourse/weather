@@ -2,7 +2,10 @@ import './Display.css';
 
 function Display({ icon }, temperature) {
     return (
-        <section className="display">
+        <section 
+            className='display'
+            id='display'
+        >
             <img 
                 src= {'https://www.metaweather.com/static/img/weather/' + icon + '.svg'}
                 alt='Weather Icon'

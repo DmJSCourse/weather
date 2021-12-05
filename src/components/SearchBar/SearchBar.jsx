@@ -1,5 +1,3 @@
-import getWeather from '../../api/metaweather';
-
 export default function SearchBar() {
     return (
         <form action="/" method="get">
