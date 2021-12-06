@@ -1,4 +1,14 @@
 .header {
-    border: 1px solid black;
-    height: 10vh;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: #000000;
+}
+
+.logo {
+    margin: .25vh .5vw;
+}
+
+.react{
+    color: #61DBFB;
 }

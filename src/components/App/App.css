@@ -10,4 +10,9 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
+
+* {
+  color: #ffffff;
+  font-size: 3vh;
+}
 /*# sourceMappingURL=App.css.map */

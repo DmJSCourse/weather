@@ -17,10 +17,10 @@ function colorConverter(H) {
     let cmin = Math.min(r,g,b),
         cmax = Math.max(r,g,b),
         delta = cmax - cmin,
-        h = 0,
-        s = 0,
-        l = 0;
-  
+        h = 0;
+        // s = 0,
+        // l = 0;
+
     if (delta === 0)
       h = 0;
     else if (cmax === r)

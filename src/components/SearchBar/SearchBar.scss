@@ -1,3 +1,15 @@
+.form {
+    display: flex;
+}
+
 .search {
-    border: 2px solid black;
+    border-radius: 5px;
+    margin: .5vh .25vw;
+    color: black;
+
+    &-button {
+        margin: .5vh .25vw .5vh 0;
+        border-radius: 5px;
+        color: black;
+    }
 }

@@ -1,9 +1,5 @@
 async function getWeather(city) {
-    // const URL = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/';
     const URL = 'https://www.metaweather.com/api/location/';
-
-
-
 
     if (!city) {
         let coords = await new Promise(() => {
@@ -19,7 +15,7 @@ async function getWeather(city) {
             console.log('res', result)
         })
 
-        let result1 = coords;
+        let result1 = await coords;
             
         let nearbyCities = await fetch(URL + 'search/?lattlong=' + result1[0] + ',' + result1[1])
             .then((response) => response.json());
@@ -28,14 +24,9 @@ async function getWeather(city) {
     }
 
 let cityData = await fetch(URL + 'search/?query=' + city);
-// console.log('cityData', cityData);
 let parsedData = await cityData.json();
-// console.log('parsed', parsedData[0].woeid);
 let weather = await (await fetch(URL + parsedData[0].woeid + '/')).json();
-// console.log('weather', weather);
 let toPass = await weather.consolidated_weather[0];
-// console.log('topass', toPass)
-
 return toPass;
 }
 

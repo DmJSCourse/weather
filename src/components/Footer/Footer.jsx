@@ -3,11 +3,16 @@ import './Footer.css';
 function Footer({ temperature, changeTemperature }) {
     return (
         <footer className="footer">
-            <label htmlFor="temperatureBar">Adjust temperature</label>
+            <label 
+                htmlFor="temperature-bar"
+                className="temperature-label"
+            >
+                Adjust Temperature
+            </label>
             <input 
                 type='range'
-                className='temperatureBar'
-                name='temperatureBar'
+                className='temperature-bar'
+                name='temperature-bar'
                 min='-10'
                 max='30'
                 value= {temperature}
@@ -15,7 +20,9 @@ function Footer({ temperature, changeTemperature }) {
                 onChange={(event) => changeTemperature(event.target.value)}
             >
             </input>
-            {temperature}
+            <span className="temperature-display">
+                {temperature}
+            </span>
         </footer>
   );
 }
