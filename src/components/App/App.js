@@ -48,7 +48,6 @@ function App() {
 
   async function setWeather (city) {
     let received = await getWeather(city);
-    console.log('received', received);
     setIcon(received.weather_state_abbr);
     setTemperature(Math.round(received.the_temp));
   }

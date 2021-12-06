@@ -12,7 +12,6 @@ async function getWeather(city) {
         let nearbyCities = await fetch(URL + 'search/?lattlong=' + position.coords.latitude + ',' + position.coords.longitude)
             .then((response) => response.json());
         city = await nearbyCities[0].title;
-        console.log(city)
     }
 
     let cityData = await fetch(URL + 'search/?query=' + city);
