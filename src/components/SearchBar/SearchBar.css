@@ -1,0 +1,18 @@
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.search {
+  border-radius: 5px;
+  margin: .5vh .25vw;
+  color: black;
+}
+
+.search-button {
+  margin: .5vh .25vw .5vh 0;
+  border-radius: 5px;
+  color: black;
+}
+/*# sourceMappingURL=SearchBar.css.map */
