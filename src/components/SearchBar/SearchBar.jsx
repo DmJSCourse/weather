@@ -1,6 +1,4 @@
 import './SearchBar.css';
-import partialSearch from '../../api/partialSearch';
-import { useState } from 'react';
 
 export default function SearchBar({ searchInput, setSearchInput, setWeather }) {
     function handleClick(event) {

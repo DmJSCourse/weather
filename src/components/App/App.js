@@ -44,7 +44,7 @@ const changeBackgroundColor = (temperature) => {
 function App() {
   let [icon, setIcon] = useState('c');
   let [temperature, setTemperature] = useState(10);
-  let [searchInput, setSearchInput] = useState('kiev');
+  let [searchInput, setSearchInput] = useState('');
 
   async function setWeather (city) {
     let received = await getWeather(city);
@@ -54,7 +54,7 @@ function App() {
   }
 
   useEffect(() => {
-    setWeather(searchInput);
+    setWeather();
   }, []);
 
   useEffect(() => {

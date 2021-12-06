@@ -1,23 +1,17 @@
 async function getWeather(city) {
     const URL = 'https://www.metaweather.com/api/location/';
 
+
+
     if (!city) {
-        let coords = await new Promise(() => {
-            navigator.geolocation.getCurrentPosition(success, error);
+        function getPosition() {
+            return new Promise((res, rej) => {
+                navigator.geolocation.getCurrentPosition(res, rej);
+            });
+        }
 
-            function success(position) {
-                return [position.coords.latitude, position.coords.longitude]
-            }
-            function error(err) {
-                alert(`ERROR(${err.code}): ${err.message}`);
-            }
-        }).then((result)=> {
-            console.log('res', result)
-        })
-
-        let result1 = await coords;
-            
-        let nearbyCities = await fetch(URL + 'search/?lattlong=' + result1[0] + ',' + result1[1])
+        let position = await getPosition();
+        let nearbyCities = await fetch(URL + 'search/?lattlong=' + position.coords.latitude + ',' + position.coords.longitude)
             .then((response) => response.json());
         city = await nearbyCities[0].title;
         console.log(city)
